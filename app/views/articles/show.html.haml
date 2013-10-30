@@ -1,0 +1,43 @@
+= title("#{@article.title} - pykih")
+.row
+  .col-sm-12
+    %ol.breadcrumb
+      %li= link_to "All articles", posts_path
+    .page-header
+      %h1.m0p0
+        = @article.title
+      %p{style: "color: grey"} Posted by #{@article.user.name} | #{time_ago_in_words(@article.created_at)} ago |
+  .col-sm-12
+    %br
+    %br
+.row
+  .col-sm-8
+    %p= @article.post.html_safe
+    %br
+    %br
+    %h5 Please do share your views
+    %br
+    %div#disqus_thread
+  .col-sm-1
+    %br
+  .col-sm-3
+    - @article.tag_list.each do |t|
+      %span.label.label-default= t
+      &nbsp;
+    %br
+    %hr
+    %h5 Recommended reads
+    %ul.m0p0.list-unstyled
+      - @article.recommended_articles.each do |article|
+        %li
+          = link_to article.title, user_article_path(article.user, article), class:"glowblue"
+          %hr.m0p0
+
+:javascript
+
+        (function() {
+          var disqus_shortname = 'pykih';
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();

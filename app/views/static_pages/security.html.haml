@@ -1,0 +1,188 @@
+= title("security - pykih")
+.row
+  .col-sm-12
+    .page-header 
+      %h1.m0p0 We are serious about security.
+    %br
+.row
+  .col-sm-2{style: "height: 2750px;"}
+    %div{id: "wallhanger", "data-spy"=>"affix", "data-offset-top"=>"0", style: "widht: 100%;"}
+      %small
+        %ul.nav.nav-tabs.nav-stacked
+          %li= link_to "Infrastructure", "#infrastructure"
+          %li= link_to "Authentication", "#authentication"
+          %li= link_to "Design", "#security-by-design"
+          %li= link_to "Storage", "#storing-sensitive-data"
+          %li= link_to "Prevention", "#prevention-against-hacking"
+          %li= link_to "Opt-in", "#opt-in-enterprise-security"
+  .col-sm-10
+    %p.lead As a company that handles sensitive business data from large and small businesses alike, we are very serious about data security and privacy. We believe in being very open with our security policies and the precautions that we have taken.
+  .col-sm-10
+    %br
+    .ruler{id: "infrastructure"}
+    %h3.red Infrastructure
+    %p Pykih Software uses some of the world's best third party vendors and hosting providers to provide the necessary infrastructure, hardware, software, networking, storage, and related technology required to operate our software. These third party vendors are some of the world's best and most secure platforms. We use:
+    %br
+  .col-sm-3
+    .well
+      %h4.red Amazon Web Services
+      %p
+        Our servers are hosted on 
+        %u #{link_to "heroku.com", "http://www.heroku.com", target: "_blank"}, 
+        a Salesforce company, that provides a secure, managed platform-as-a-service. You can review 
+        %u #{link_to "Heroku's security policy.", "https://www.heroku.com/policy/security", target: "_blank"} 
+        Heroku, in turn, is hosted on
+        %u Amazon EC2 
+        cloud servers. Any files uploaded on our software gets stored on 
+        %u Amazon S3 Cloud Files.
+    .well
+      %h4.red Back ups
+      %p We regularly take back-ups of your data. We take weekly back-ups and retain last five back-ups. We also take daily back-ups and retain last seven daily back-ups. This way, in case of a disaster, we have the last snapshot of your data.
+  .col-sm-4
+    .well
+      %h4.red SMTP Server
+      %p
+        To send and receive emails from our software, we use 
+        %u #{link_to "postmarkapp.com", "http://www.postmarkapp.com", target: "_blank"} 
+        that ensures assured delivery of the emails (avoid SPAM folder) that you want to send to your customers and employees.
+    .well
+      %h4.red SSL Security
+      %p All data communication from our server to your browser are encrypted with a 256-bit SSL Certificate.
+    .well
+      %h4.red Continuous Error Monitoring
+      %p Whenever an exception takes place, our back-end immediately knows about it and a notification is sent to our technical support team.
+  .col-sm-3
+    .well
+      %h4.red Languages and platforms
+      %p 
+        We use some of the world’s hottest and most active open source languages to develop our products. Our products are built on   
+        %u #{link_to "Ruby on Rails", "http://rubyonrails.org/", target: "_blank"} 
+        framework. Big companies like Twitter, Group On, Yellow Pages, Kiva, Scribd, Hulu, Slideshare, Github, etc. are using this same framework. For database, we use 
+        %u #{link_to "PostGreSQL.", "http://www.postgresql.org/", target: "_blank"}
+    .well
+      %h4.red Continuous Support
+      %p
+        On every page, every user, sees a Contact us button floating around on the bottom-right side of the page. On clicking this, users can talk to our support team or raise defects. All tickets go to 
+        %u #{link_to "freshdesk.com", "http://www.freshdesk.com", target: "_blank"}, 
+        our ticket management system.
+  .col-sm-10
+    %br
+    .ruler{id: "authentication"}
+    %h3.red Authentication Systems
+  .col-sm-3
+    .well
+      %h4.red Only Legit Email ID
+      %p For successful sign-up, the user has to confirm his email ID. All sign-ins are continuously tracked i.e. sign in count, IP address, last sign in timestamp. To recover a password, an email is sent to the registered email ID of the user and from there they can jump to a secure link where they can set a new password.
+  .col-sm-4
+    .well
+      %h4.red Password
+      %p We encourage passwords of at least 8 character alphanumeric passwords, with at least one number. All passwords are encrypted when stored in our database.
+    .well
+      %h4.red API Authentication
+      %p Registered users and external APPs that accesses our systems is given is unique 256 bit separate API_SECRET. Hence, no unregistered users can access our APIs.
+  .col-sm-3
+    .well
+      %h4.red Third party authentication
+      %p We support sign in with Facebook or LinkedIn. The advantages of giving customers or employees freedom to sign in with Facebook or LinkedIn are: a) Do not have to remember one more password b) Easy since it is single-sign-on with their favorite service.
+  .col-sm-10
+    %br
+    .ruler{id: "security-by-design"}
+    %h3.red Security by Design
+    We believe that security is not something that can be retro-fitted into design.
+    %br
+    %br
+  .col-sm-6
+    .well
+      %h4.red Scoping
+      %p
+        %u The Risk: 
+        Lets take the case that a user has many books. Ram has two books i.e. Harry Potter and Fountain Head. Joe has one book i.e. The Indus Saga. This data is stored in two tables i.e. users and books. The simple security challenge is how do we ensure that only Ram has access to Harry Potter and Fountain Head and only Joe has access to Indus Saga.
+        %br
+        %br
+        %u Mitigation:
+        All pages in our systems are “scoped” i.e. books can only be accessed through the user. How do you know that our systems are well scoped? Well, look at the URLs in the system. They will generally be in the format: http://www.product.com/users/ram/books. This means that Ram is logged in and seeing his books.
+  .col-sm-4
+    .well
+      %h4.red Authorization
+      %p
+        %u The Risk: 
+        What if now Ram manually tries to change the URL to say http://www.product.com/users/joe/books. 
+        %br
+        %br
+        %u Mitigation:
+        In such a case, the system understands that Ram is currently logged in and is trying to access Joe’s account. Ram will receive a permission denied error. Most of our systems are multi-user in nature with different privileges and roles. Each action is validated if the user can perform an action.
+  .col-sm-10
+    %br
+    .ruler{id: "storing-sensitive-data"}
+    %h3.red Storing Sensitive Data
+  .col-sm-3
+    .well
+      %h4.red Password
+      %p All passwords encrypted when stored in the database. Our systems also do not print passwords in our LOG files. This way there is no way for anyone - either our employees or an external hacker to access user passwords.
+  .col-sm-7
+    .well
+      %h4.red Secret Tokens
+      %p
+        %u The Risk: 
+        Our systems use and maintain multiple SECRET Tokens like Facebook API token, LinkedIn API Token, PostMarkApp API Token, Amazon S3 API Token, Session Token, etc. All of these tokens are sensitive and if an external hacker gains access to it then he could potentially gain access to those accounts.
+        %br
+        %br
+        %u Mitigation:
+        Hence, none of these tokens are stored in our version control or any other files. They are only stored as Environment Variables in the production environment in Heroku.
+  .col-sm-10
+    %br
+    .ruler{id: "prevention-against-hacking"}
+    %h3.red Preventions against Hacking
+    We try our utmost to protect ourselves and your data against security attacks. Below are some of the ways we protect against hacking attacks:
+    %br
+    %br
+  .col-sm-3
+    .well
+      %h4.red Rails prevents against
+      %p
+        If coded properly, Ruby on Rails, the framework we use, protects against the following attacks:
+        %ul
+          %li SQL Injection Attacks
+          %li Cross-Site Request Forgery Scripting Attacks
+          %li Session Hijacking
+          %li Cross Site Scripting (XSS)
+  .col-sm-3
+    .well
+      %h4.red Mass Assignment
+      %p
+        We are exposing only those attributes from a table that need to be updated from forms. The rest are either protected or read-only. 
+        %br
+        %br
+        Example: Foreign Keys that are only set once on creation and are not expected to be changed later e.g. dashboard_id, account_id, etc. are set as read_only attributes. This way, an external Hacker cannot reassign Joe’s books to Ram.
+  .col-sm-4
+    .well
+      %h4.red Disabling Script Execution on File Uploads
+      %p The only files that can be uploaded in our system at this moment are Excel Files for data-upload and Image Files for profile-image-uploads. Hence, we validate the content_type and extension of the file being uploaded and do not allow any files that are not either a spreadsheet or an image. All files get uploaded to Amazon S3. Hence, no files will ever sit on our server.
+  .col-sm-10.pull-right
+    %br
+    .ruler{id: "opt-in-enterprise-security"}
+    %h3.red Opt-in Enterprise Security
+    While we strongly believe that these authentication features are sufficient for more applications, we also understand that your specific needs might be more critical. In such cases, we can provide following optional opt-in authentication features:
+    %br
+    %br
+  .col-sm-7.pull-right
+    .well
+      %h4.red Advance opt-in
+      %p
+        Following security features are are used in sensitive business-critical applications like Internet Banking. They are provided only with custom-deployment versions of our products:
+        %br
+        %ul
+          %li Expire the password after a configured time (say every 30 days)
+          %li Disallow users from reusing their past 5 passwords
+          %li Restrict maximum one session per account i.e. a user cannot be logged in from their Home and Office computers at the same time.
+          %li Expire an account after a configurable time of inactivity
+  .col-sm-3.pull-right
+    .well
+      %h4.red Basic opt-in 
+      %p
+        a) Restrict access to your platform from only certain IP addresses 
+        %br
+        b) Allow only users with email IDs from a certain domain e.g. (@mycorp.com) to sign up
+        %br
+        %br
+        %br

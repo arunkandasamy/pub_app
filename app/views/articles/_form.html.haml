@@ -1,0 +1,16 @@
+= simple_form_for([current_user, @article], :html => { :class => 'form-horizontal' }) do |f|
+  = f.input :title
+  = f.input :tag_list, :hint => "Add more Tags, separated by commas"
+  = f.input :meta_keys, as: :text, :hint => "Add your SEO Keywords for SEO Friendly", input_html: {:rows => 2, :cols => 60}
+  = f.input :meta_descriptions, as: :text, :hint => "Descriptions about Articles", input_html: {:rows => 2, :cols => 60}
+  = f.input :created_at, as: :date
+  = f.text_area :post, class: "col-sm-4 tinymce", :rows => 10, :cols => 10
+  = f.input :user_id, as: :hidden, input_html: {value: current_user.id}
+  %br
+  = f.button :submit, :class => 'btn btn-default'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), user_articles_path
+
+=tinymce
+%br
+%br
+%br

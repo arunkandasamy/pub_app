@@ -1,0 +1,8 @@
+var data_url_twitter = "<%= BASE_URL  %>" + window.location.pathname;
+var fb_share_img_style = "padding:2px 0 0 20px;height:26px;no-repeat top left;";
+var url = "http://static.ak.facebook.com/images/share/facebook_share_icon.gif?6:26981";
+var fb_share_img = "<img src='"+url+"'/>";
+
+$("#title").html("<div class='table-responsive'><table><tr><td><h3 class='m0p0'><%= @article.title %></h3><div style='color: gray; font-size: 12px; font-weight: 200;'>Posted by <%=@article.user.name%> | <%= time_ago_in_words(@article.created_at)%> ago | <a href=<%= user_article_path(@article.user, @article)%>>Permalink</a> <% @article.tag_list.each do |t| %><span class='label label-default' style='font-size: 11px;'><%= t %></span>&nbsp;<% end %></div></td><td>&nbsp;&nbsp;</td></table></div><a href='https://twitter.com/share' class='twitter-share-button' data-url='"+ data_url_twitter  +"' data-text='<%= @article.title %>'>Tweet</a><div class='fb-send' data-href='"+ data_url_twitter +"'></div>"+ '<a rel="nofollow" href="http://www.facebook.com/share.php?u='+ data_url_twitter +'" onclick="return fbs_click()" target="_blank" class="fb_share_link">' + fb_share_img+ '</a>'+"  <hr/><br/><%= j @article.post.html_safe %>");
+$("#poster-bars").hide();
+$("#disqus_thread").show();

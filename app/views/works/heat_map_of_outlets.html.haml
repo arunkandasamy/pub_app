@@ -1,0 +1,23 @@
+.row
+  .col-sm-12
+    %ol.breadcrumb
+      %li= link_to "Work", "/work"
+    .page-header 
+      %h1.m0p0 Sales heat map outlet wise
+    %br
+    %p.lead This is a multi-layered map used for sales analytics. The map when zoomed out shows heat maps based on revenue / sales amount at each geographic location. As you start zooming in to a level where you see roads, each outlet is mapped out and on clicking the outlet you see details about the outlet. Once you zoom out, the outlet markers disappear.
+    %p Note: The data on this map is randomly generated. 
+    %br
+    #map-canvas
+
+:javascript
+  $(document).ready(function(){
+  var k = new Pyk.GoogleHeat({
+  selection: "#map-canvas",
+  data: "/data/googlemaps.json",
+  center: new google.maps.LatLng(23.1828,75.7772),
+  defaultZoom: 5,
+  tooltipZoom: 12
+  })
+  k.init();
+  });

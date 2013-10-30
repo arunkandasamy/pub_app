@@ -1,0 +1,28 @@
+// , "data-spy"=>"affix", "data-offset-top"=>"50" 
+%nav.navbar.navbar-default{role: "navigation"} 
+  .container
+    .navbar-header
+      = link_to image_tag('/favicon.ico'), root_url, :class => 'navbar-brand img-responsive'
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      %ul.nav.navbar-nav.pull-right
+        %li{class: controller_name == "articles" ? "active" : nil}= link_to "Blog", "/blog"
+        %li{class: controller_name == "works" ? "active" : nil}= link_to "Work", "/work"
+        %li{class: action_name == "careers" ? "active" : nil}= link_to "Hacker Culture", "/hacker-culture"
+        %li{class: action_name == "about" ? "active" : nil}= link_to "About", "/about"
+        %li{class: action_name == "security" ? "active" : nil}= link_to "Security", "/security"            
+        %li{class: action_name == "contact" ? "active" : nil}= link_to "Visit us", "/contact"
+        - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#", style: "padding: 4px 0px;"}
+              %table.m0p0
+                %tr
+                  %td= image_tag dp("#{current_user.email}", 20), class: "img-circle img-responsive"
+                  %td &nbsp;
+                  %td 
+                    = current_user.email
+                    %b.caret
+            %ul.dropdown-menu
+              %li= link_to 'Edit Profile', edit_user_path(current_user)
+              %li= link_to 'Account Setting', edit_user_registration_path
+              %li.img-responsive= link_to image_tag("pyk/sign-out.png"), destroy_user_session_path, method: :delete, "title"=>"Sign Out", "placement"=>"bottom", "data-toggle"=>"tooltip"
+        

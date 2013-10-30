@@ -1,0 +1,24 @@
+!!!
+%html{lang: "en"}
+  %head
+    %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC_x5TSxdA6WDIgMfL21CViFexfHFG4cMA&sensor=true&libraries=visualization"}
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %title #{yield(:title) || "Pykih Software LLP"}
+    %meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    = render partial: "layouts/shared/meta_tags"
+    /[if lt IE 9]
+      %script{src: "/other_assets/respond.min.js"}/
+  %body
+    = render partial: "layouts/shared/loading"
+    = render partial: "layouts/shared/navbar"
+    = render partial: "layouts/shared/flash", locals: {flash: flash}
+    .container
+      = yield
+    = render partial: "layouts/shared/footer"
+    #scroll-topper
+      %span.glyphicon.glyphicon-chevron-up
+    = render partial: "layouts/shared/ga"
+    = render partial: "layouts/shared/freshdesk"

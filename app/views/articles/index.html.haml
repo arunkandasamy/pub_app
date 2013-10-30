@@ -1,0 +1,104 @@
+= title("blog - pykih")
+- content_for :head, auto_discovery_link_tag(:rss, {action: "index"})
+.row
+  .col-sm-12
+    .page-header
+      %h1.m0p0
+        = link_to "Our thoughts and experiments", posts_path, class: "red"
+        = image_tag "pykih_tile_50.png", size: "40x40", class: "pull-right img-responsive"
+  .col-sm-12
+    %br
+    %br
+.row
+  .col-sm-2
+    %strong Tags
+    %br
+    %br
+    %ul.m0p0.list-unstyled
+
+    %hr
+    = render partial: "layouts/shared/signup"
+    %hr
+    = render partial: "layouts/shared/tw"
+    %hr
+    = render partial: "layouts/shared/fb"
+    %hr
+    .img-responsive
+      = link_to image_tag("slideshare.png"), "http://www.slideshare.net/ritvvijparrikh", target: "_blank"
+    =# link_to image_tag("feed-icon-28x28.png"), posts_path(format: "rss")
+    %br
+    %br
+    %br
+  .col-sm-10
+    .col-sm-4
+      %strong Essay Titles
+      %br
+      %br
+      %small= render 'articles'
+    .col-sm-8
+      #poster-bars{:style => "display:none"}
+        %h5{:style => "background-color:#FFD700; position:absolute; top:auto; right:auto; left:auto;"} Article Loading...
+      %p
+        #title 
+          - if @article.blank?
+            %small.gray
+              %i the article will appear here
+          - else
+            .table-responsive
+              %table.table-striped.table-condensed
+                %tr
+                  %td
+                    %h3.m0p0= @article.title
+                    .gray{style: "font-size:12px; font-weight: 200;"}
+                      Posted by
+                      = @article.user.name
+                      |
+                      = time_ago_in_words(@article.created_at)
+                      ago
+                    %td &nbsp;&nbsp;
+              %hr
+              %br
+              = @article.post.html_safe
+      %br
+      %br
+      %h5 Please do share your views
+      %br
+      %div#disqus_thread{:style=>"display:none"}  
+
+:javascript
+  $(".title").click(function(){
+    var disqus_title = $(this).attr("dis_title");
+    var disqus_identifier = $(this).attr("dis_identify");
+    var disqus_url = $(this).attr("dis_url");
+    history.pushState({id: disqus_identifier}, disqus_title, disqus_url);
+
+    var reset = function(disqus_title, disqus_identifier, disqus_url){
+
+        DISQUS.reset({
+          reload: true,
+          config: function () {  
+            this.page.identifier = disqus_idenfier;
+            this.page.url = disqus_url;
+            this.page.title = disqus_title;
+            this.language = "en";
+          }
+        });
+    };
+        var disqus_config = function () { 
+    	  this.language = "en";
+    	};
+    	
+    (function() {
+      var disqus_shortname = 'pykih';
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq); 
+    })(); 
+  });
+
+  $( ".title:first").trigger( "click" );
+
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  
+
+  function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}

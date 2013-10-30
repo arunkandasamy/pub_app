@@ -1,0 +1,28 @@
+.pull-center{text-align: center;}
+.m0p0{margin: 0px; padding: 0px;}
+
+
+#scroll-topper{
+    position: fixed;
+    background: #2d2d2d;
+    padding: 0;
+    margin: 0;
+    padding-left: 2px;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 30px;
+    line-height: 47px;
+    color: green;
+    top: 200px;
+    right: 50px;
+    color: #fff;
+    opacity: 0.1;
+}
+
+#scroll-topper:hover{
+    opacity: 0.6;
+}
+
+.red{color: #C83729;}

@@ -1,0 +1,26 @@
+.row
+  .col-sm-12
+    %h1 Listing articles
+    =  link_to 'Create New Article', new_user_article_path(current_user), class: "btn btn-default btn-success"
+    %br
+    .table-responsive
+      %table.table-striped.table-condensed
+        %thead
+          %tr
+            %th Title
+            %th Tags Name
+            %th
+            %th
+        %tbody
+          - @articles.each do |article|
+            %tr    
+              %td
+                = link_to article.title, user_article_path(article.user, article)
+              %td
+                = link_to 'Edit', edit_user_article_path(current_user, article)
+              %td
+                = link_to 'Delete', user_article_path(current_user, article), :method => :delete, :confirm => "Confirm?", class: "red"
+    %br
+    %br
+    %br
+    %br

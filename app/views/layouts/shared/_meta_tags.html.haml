@@ -1,0 +1,7 @@
+- if controller_name == "articles"
+  - if @meta_descriptions.present?
+    %meta{content: @meta_descriptions, name: "description"}/
+  - if @meta_keys.present?
+    %meta{content: @meta_keys, name: "keywords"}/
+  - if @meta_author.present?
+    %meta{content: @meta_author, name: "author"}/

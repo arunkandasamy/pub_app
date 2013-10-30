@@ -1,0 +1,8 @@
+#articles
+	#loader-bar{:style => "display:none"}
+		%h5{:style => "background-color:#FFD700; position:absolute; top:auto; right:auto; left:auto;"} Titles Loading...
+	%ul.m0p0.list-unstyled
+		- @articles.each do |article|
+			%li.tit
+				= link_to article.title, user_article_path(article.user, article), class:"title", remote: true, dis_title: article.title
+				%hr.m0p0

@@ -1,0 +1,28 @@
+.row
+  .col-sm-12
+    %ol.breadcrumb
+      %li= link_to "Work", "/work"
+    .page-header 
+      %h1.m0p0 United States - zoomable map
+    %br
+    %p.lead This map shows a heat maps of different data points (deaths, population and parties) on the US state map. On clicking on a state, the map zooms in to district level. On clicking again, the map zooms out.
+    %br
+    %br
+    #choropleth-container
+    %br
+    %br
+    %br
+    %br
+    
+
+:javascript
+  $(document).ready(function(){
+    k = new Choropleth({
+  	selection: "#choropleth-container",
+  	topojson: "/data/us.json",
+  	county_data: "/data/counties_data.json",
+  	state_data: "/data/states_data.json",
+      });
+    k.init();
+  });
+    

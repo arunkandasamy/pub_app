@@ -1,0 +1,42 @@
+.row
+  .col-sm-12
+    %ol.breadcrumb
+      %li= link_to "Work", "/work"
+    .page-header 
+      %h1.m0p0 River chart
+    %br
+    %p.lead The River chart is a D3.js chart that we custom built for a client. It combines the best of Funnel chart and stacked bar chart. 
+    %h5 The design process
+    %p We are in process of writing a detailed blog post explaining the logic and design thought process behind this chart.
+    %br
+    .col-sm-3= image_tag "/images_for_blog/river_1.jpg", class: "col-sm-12"
+    .col-sm-3= image_tag "/images_for_blog/river_3.jpg", class: "col-sm-12"
+    .col-sm-3= image_tag "/images_for_blog/river_2.jpg", class: "col-sm-12"
+    .col-sm-3= image_tag "/images_for_blog/river_4.jpg", class: "col-sm-12"
+    %br
+    %br
+.row
+  .col-sm-12    
+    %br
+    %br
+    %br
+    %br
+    %br
+    #river-container
+    %br
+    %br
+    %br
+    %br
+    %br
+    %br
+    %br
+    %br
+
+
+:javascript
+  $(document).ready(function(){
+   d3.json("/data/river-data.json", function(e,d){
+    chart = riverChart(200, 960);
+    d3.select("#river-container").datum(d).call(chart);
+   });
+  });
